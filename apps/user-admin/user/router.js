@@ -14,17 +14,13 @@
      this.module.app.trigger("user:listing:requested");
    },
    showUserDetails: function(id) {
-     var user = this.module.collection.get(id);
+     var self = this; 
      
-     if (user) {
-      user.select();
-     } else {
-      user = new User({ id: id });
-      user.fetch().then(function(){
+     this.module.collection.fetch().then(function () {
+       var user = this.module.collection.get(id);
        user.select();
-      });
-     }
+     });
    }
-   
+     
  });
  
